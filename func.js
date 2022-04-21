@@ -33,3 +33,6 @@ function leastSquaresPolynomial(x, y, degree) {
 	}
 	return coefficients;
 }
+function leastSquaresExponential(x, y) {
+	return leastSquaresPolynomial(x, y.map(Math.log), 1).map(Math.exp);
+}
