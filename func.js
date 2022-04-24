@@ -36,3 +36,10 @@ function leastSquaresPolynomial(x, y, degree) {
 function leastSquaresExponential(x, y) {
 	return leastSquaresPolynomial(x, y.map(Math.log), 1).map(Math.exp);
 }
+function meanSquaredError(observed, predicted) {
+	let sum = 0;
+	for (var i = 0; i < observed.length; i++) {
+		sum += (observed - predicted) ** 2;
+	}
+	return sum / observed.length;
+}
