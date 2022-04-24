@@ -15,14 +15,14 @@ function graph(x, y, xa, xb, ya, yb, color, weight = 10, dashed = false) {
 	ctx.stroke();
 	resetStroke();
 }
-function gradientGraph(x, y, xa, xb, ya, yb, weight = 10) {
+function gradientGraph(x, y, xa, xb, ya, yb, max, weight = 10) {
 	const m = (i) => [ map(x[i], xa, xb, 0, 4000), 3000 - map(y[i], ya, yb, 100, 2900) ];
 	for (var i = 1; i < x.length; i++) {
 		ctx.beginPath();
 		ctx.lineWidth = weight;
 		ctx.moveTo(...m(i-1));
 		ctx.lineTo(...m(i));
-		let color = Math.round(255 * map((y[i-1] + y[i])/2, ya, yb, 0, 1));
+		let color = Math.round(255 * map((y[i-1] + y[i])/2, ya, max, 0, 1));
 		ctx.strokeStyle = `rgb(${Math.max(Math.min(2 * color, 255), 0)},${Math.max(Math.min(2 * (255 - color), 255), 0)},0)`;
 		ctx.stroke();
 	}
