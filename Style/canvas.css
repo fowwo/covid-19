@@ -18,5 +18,11 @@ div#canvas-container > div#fade {
 	background-image:
 		linear-gradient(to right, var(--background-primary) 0%, transparent 20%),
 		linear-gradient(to right, var(--background-primary) 0%, transparent 10%),
-		linear-gradient(to right, var(--background-primary) 0%, transparent 5%);
+		linear-gradient(to right, var(--background-primary) 0%, transparent 5%),
+		linear-gradient(to bottom, var(--background-primary) 0%, transparent 5%),
+		linear-gradient(to bottom, var(--background-primary) 0%, transparent 2.5%),
+		linear-gradient(to top, var(--background-primary) 0%, transparent 5%),
+		linear-gradient(to top, var(--background-primary) 0%, transparent 2.5%),
+		linear-gradient(to left, var(--background-primary) 0%, transparent 5%),
+		linear-gradient(to left, var(--background-primary) 0%, transparent 2.5%);
 }
