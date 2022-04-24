@@ -100,7 +100,6 @@ document.getElementById("state").addEventListener("change", e => {
 document.getElementById("date").addEventListener("change", e => {
 	clear();
 	date = e.target.value;
-	load(state, date, left, 7);
 	load(state, date, left, right);
 });
 document.getElementById("left").addEventListener("change", e => {
