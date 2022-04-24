@@ -28,7 +28,7 @@ function leastSquaresPolynomial(x, y, degree) {
 	let coefficients = [];
 	for (var i = 0; i <= degree; i++) {
 		let matrix = M.copy();
-		matrix.setColumn(degree - i, xys);
+		matrix.setColumn(i, xys);
 		coefficients.push(matrix.determinant() / detM);
 	}
 	return coefficients;
