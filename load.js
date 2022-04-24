@@ -49,9 +49,9 @@ function load(state, date, left, right) {
 	y = y.slice(date - left, date + 1);
 	avg = avg.slice(date - left, date + 1);
 
-	const miny = Math.min(...y);
-	const maxy = Math.max(...y);
 	const maxAvg = Math.max(...avg);
+	const miny = Math.min(...y, ...avg);
+	const maxy = Math.max(...y, maxAvg);
 
 	const plot = (f, x, y, ...args) => f(x, y, x[0], x2.at(-1), miny, maxy, ...args);
 
