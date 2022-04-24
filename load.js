@@ -63,7 +63,21 @@ let wait = setInterval(() => {
 	if (Object.keys(data).length && Object.keys(fips).length) {
 		clearInterval(wait);
 
+		// Populate select dropdown
+		const select = document.getElementById("state");
+		Object.keys(fips).filter(isNaN).sort().forEach(x => {
+			let option = document.createElement("option");
+			option.value = x;
+			option.innerText = x;
+			select.appendChild(option);
+		});
+
 		// Load New York by default
 		load("New York", "2021-08-03", 14, 7);
 	}
 }, 500);
+
+document.getElementById("state").addEventListener("change", e => {
+	clear();
+	load(e.target.value, "2021-08-03", 14, 7);
+});
