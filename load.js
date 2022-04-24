@@ -4,6 +4,7 @@ let fips = {};
 let state = "New York";
 let date = "2021-08-03";
 let left = 21;
+let right = 7;
 
 fetch("./Data/data.json")
 	.then(r => r.json())
@@ -87,22 +88,28 @@ let wait = setInterval(() => {
 			select.appendChild(option);
 		});
 		
-		load(state, date, left, 7);
+		load(state, date, left, right);
 	}
 }, 500);
 
 document.getElementById("state").addEventListener("change", e => {
 	clear();
 	state = e.target.value;
-	load(state, date, left, 7);
+	load(state, date, left, right);
 });
 document.getElementById("date").addEventListener("change", e => {
 	clear();
 	date = e.target.value;
 	load(state, date, left, 7);
+	load(state, date, left, right);
 });
 document.getElementById("left").addEventListener("change", e => {
 	clear();
-	left = e.target.value;
-	load(state, date, left, 7);
+	left = parseInt(e.target.value);
+	load(state, date, left, right);
+});
+document.getElementById("right").addEventListener("change", e => {
+	clear();
+	right = parseInt(e.target.value);
+	load(state, date, left, right);
 });
