@@ -69,6 +69,7 @@ let wait = setInterval(() => {
 			let option = document.createElement("option");
 			option.value = x;
 			option.innerText = x;
+			if (x === "New York") option.selected = true;
 			select.appendChild(option);
 		});
 
