@@ -1,6 +1,9 @@
 let data = {};
 let fips = {};
 
+let state = "New York";
+let date = "2021-08-03";
+
 fetch("./Data/data.json")
 	.then(r => r.json())
 	.then(d => { data = d; });
@@ -63,22 +66,37 @@ let wait = setInterval(() => {
 	if (Object.keys(data).length && Object.keys(fips).length) {
 		clearInterval(wait);
 
-		// Populate select dropdown
-		const select = document.getElementById("state");
+		// Populate state dropdown
+		let select = document.getElementById("state");
 		Object.keys(fips).filter(isNaN).sort().forEach(x => {
 			let option = document.createElement("option");
 			option.value = x;
 			option.innerText = x;
-			if (x === "New York") option.selected = true;
+			if (x === state) option.selected = true;
 			select.appendChild(option);
 		});
 
-		// Load New York by default
-		load("New York", "2021-08-03", 14, 7);
+		// Populate date dropdown
+		select = document.getElementById("date");
+		Object.keys(get("New York").on).sort().forEach(x => {
+			let option = document.createElement("option");
+			option.value = x;
+			option.innerText = x;
+			if (x === date) option.selected = true;
+			select.appendChild(option);
+		});
+		
+		load(state, date, 14, 7);
 	}
 }, 500);
 
 document.getElementById("state").addEventListener("change", e => {
 	clear();
-	load(e.target.value, "2021-08-03", 14, 7);
+	state = e.target.value;
+	load(state, date, 14, 7);
+});
+document.getElementById("date").addEventListener("change", e => {
+	clear();
+	date = e.target.value;
+	load(state, date, 14, 7);
 });
