@@ -36,6 +36,9 @@ function leastSquaresPolynomial(x, y, degree) {
 function leastSquaresExponential(x, y) {
 	return leastSquaresPolynomial(x, y.map(Math.log), 1).map(Math.exp);
 }
+function fivePointEndpoint(y) {
+	return (-1/12) * (-25 * y[4] + 48 * y[3] - 36 * y[2] + 16 * y[1] - 3 * y[0]);
+}
 function meanSquaredError(observed, predicted) {
 	return observed.reduce((sum, v, i) => sum + (v - predicted[i]) ** 2, 0) / observed.length;
 }
