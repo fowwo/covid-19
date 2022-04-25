@@ -64,6 +64,7 @@ function load(state, date, left, right) {
 	}
 
 	// Slice range
+	const actual = avg.slice(date + 1, date + 1 + right);
 	left = Math.min(left, date);
 	x2 = x.slice(0, left + right + 1);
 	x = x.slice(0, left + 1);
@@ -71,8 +72,8 @@ function load(state, date, left, right) {
 	avg = avg.slice(date - left, date + 1);
 
 	const maxAvg = Math.max(...avg);
-	const miny = Math.min(...y, ...avg);
-	const maxy = Math.max(...y, maxAvg);
+	const miny = Math.min(...y, ...avg, ...actual);
+	const maxy = Math.max(...y, ...actual, maxAvg);
 
 	let v;
 	const polynomial = (x) => v.reduce((sum, v, i) => sum + v * (x ** i), 0);
@@ -80,6 +81,7 @@ function load(state, date, left, right) {
 	const plot = (f, x, y, ...args) => f(x, y, x[0], x2.at(-1), miny, maxy, ...args);
 
 	plot(graph, x, y, "#7af5");
+	graph(x2.slice(-right - 1), [avg.at(-1), ...actual], x[0], x2.at(-1), miny, maxy, "#fff8", 5, true);
 	plot(gradientGraph, x, avg, maxAvg, 25);
 
 	if (isToggled(linear)) {
