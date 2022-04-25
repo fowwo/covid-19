@@ -6,6 +6,22 @@ let date = "2021-08-03";
 let left = 21;
 let right = 7;
 
+// Estimate toggles
+const linear = document.getElementById("linear");
+const quadratic = document.getElementById("quadratic");
+const cubic = document.getElementById("cubic");
+const quartic = document.getElementById("quartic");
+const quintic = document.getElementById("quintic");
+const exp = document.getElementById("exponential");
+const fivePoint = document.getElementById("fivepoint");
+[ linear, quadratic, cubic, quartic, quintic, exp, fivePoint ].forEach(x => {
+	x.addEventListener("click", e => {
+		e.target.classList.toggle("toggled");
+		clear();
+		load(state, date, left, right);
+	});
+});
+
 fetch("./Data/data.json")
 	.then(r => r.json())
 	.then(d => { data = d; });
@@ -58,11 +74,44 @@ function load(state, date, left, right) {
 	const miny = Math.min(...y, ...avg);
 	const maxy = Math.max(...y, maxAvg);
 
+	let v;
+	const polynomial = (x) => v.reduce((sum, v, i) => sum + v * (x ** i), 0);
+	const exponential = (x) => v[0] * (v[1] ** x);
 	const plot = (f, x, y, ...args) => f(x, y, x[0], x2.at(-1), miny, maxy, ...args);
 
 	plot(graph, x, y, "#7af5");
 	plot(gradientGraph, x, avg, maxAvg, 25);
+
+	if (isToggled(linear)) {
+		v = leastSquaresPolynomial(x, avg, 1);
+		plot(graph, x2, x2.map(polynomial), "#f00", 10, true);
+	}
+	if (isToggled(quadratic)) {
+		v = leastSquaresPolynomial(x, avg, 2);
+		plot(graph, x2, x2.map(polynomial), "#ff0", 10, true);
+	}
+	if (isToggled(cubic)) {
+		v = leastSquaresPolynomial(x, avg, 3);
+		plot(graph, x2, x2.map(polynomial), "#0f0", 10, true);
+	}
+	if (isToggled(quartic)) {
+		v = leastSquaresPolynomial(x, avg, 4);
+		plot(graph, x2, x2.map(polynomial), "#0ff", 10, true);
+	}
+	if (isToggled(quintic)) {
+		v = leastSquaresPolynomial(x, avg, 5);
+		plot(graph, x2, x2.map(polynomial), "#0ff", 10, true);
+	}
+	if (isToggled(exp)) {
+		v = leastSquaresExponential(x, avg);
+		plot(graph, x2, x2.map(exponential), "#00f", 10, true);
+	}
+	if (isToggled(fivePoint)) {
+		v = fivePointEndpoint(avg.slice(-5));
+		plot(graph, x2, x2.map(n => v * (n - x.at(-1)) + avg.at(-1)), "#f0f", 10, true);
+	}
 }
+function isToggled(x) { return x.classList.contains("toggled"); }
 
 let wait = setInterval(() => {
 	if (Object.keys(data).length && Object.keys(fips).length) {
