@@ -11,3 +11,11 @@ header > div > span {
 }
 header > div > span:first-child { text-align: left; }
 header > div > span:nth-child(2) { font-size: 40px; text-align: left; }
+
+header > div#linear-group { color: var(--linear); }
+header > div#quadratic-group { color: var(--quadratic); }
+header > div#cubic-group { color: var(--cubic); }
+header > div#quartic-group { color: var(--quartic); }
+header > div#quintic-group { color: var(--quintic); }
+header > div#exponential-group { color: var(--exponential); }
+header > div#fivepoint-group { color: var(--fivepoint); }

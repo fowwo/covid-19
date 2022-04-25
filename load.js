@@ -97,21 +97,21 @@ function load(state, date, left, right) {
 	}
 	if (isToggled(quadratic)) {
 		v = leastSquaresPolynomial(x, avg, 2);
-		plot(graph, x2, x2.map(polynomial), "#ff0", 10, true);
+		plot(graph, x2, x2.map(polynomial), "#f80", 10, true);
 		document.getElementById("quadratic-value").innerText = Math.round(polynomial(x2.at(-1)));
 		document.getElementById("quadratic-difference").innerText = Math.round(polynomial(x2.at(-1))) - diff;
 		document.getElementById("quadratic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(cubic)) {
 		v = leastSquaresPolynomial(x, avg, 3);
-		plot(graph, x2, x2.map(polynomial), "#0f0", 10, true);
+		plot(graph, x2, x2.map(polynomial), "#ff0", 10, true);
 		document.getElementById("cubic-value").innerText = Math.round(polynomial(x2.at(-1)));
 		document.getElementById("cubic-difference").innerText = Math.round(polynomial(x2.at(-1))) - diff;
 		document.getElementById("cubic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(quartic)) {
 		v = leastSquaresPolynomial(x, avg, 4);
-		plot(graph, x2, x2.map(polynomial), "#0ff", 10, true);
+		plot(graph, x2, x2.map(polynomial), "#0f0", 10, true);
 		document.getElementById("quartic-value").innerText = Math.round(polynomial(x2.at(-1)));
 		document.getElementById("quartic-difference").innerText = Math.round(polynomial(x2.at(-1))) - diff;
 		document.getElementById("quartic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
@@ -125,7 +125,7 @@ function load(state, date, left, right) {
 	}
 	if (isToggled(exp)) {
 		v = leastSquaresExponential(x, avg);
-		plot(graph, x2, x2.map(exponential), "#00f", 10, true);
+		plot(graph, x2, x2.map(exponential), "#66f", 10, true);
 		document.getElementById("exponential-value").innerText = Math.round(exponential(x2.at(-1)));
 		document.getElementById("exponential-difference").innerText = Math.round(exponential(x2.at(-1))) - diff;
 		document.getElementById("exponential-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(exponential), actual)) : "--";

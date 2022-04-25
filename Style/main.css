@@ -1,6 +1,14 @@
 :root {
 	--background-primary: hsl(220, 30%, 15%);
-	--text-primary: #dff
+	--text-primary: #dff;
+
+	--linear: #f00;
+	--quadratic: #f80;
+	--cubic: #ff0;
+	--quartic: #0f0;
+	--quintic: #0ff;
+	--exponential: #66f;
+	--fivepoint: #f0f;
 }
 html {
 	display: flex;
