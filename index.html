@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="Style/main.css">
 	<link rel="stylesheet" type="text/css" href="Style/header.css">
+	<link rel="stylesheet" type="text/css" href="Style/nav.css">
 	<link rel="stylesheet" type="text/css" href="Style/canvas.css">
 </head>
 <body>
@@ -67,10 +68,12 @@
 		</div>
 	</header>
 	<nav>
-		<select id="state" name="state"></select>
-		<select id="date" name="date"></select>
-		<input id="left" type="number" value="21" min="3" max="100" step="1">
-		<input id="right" type="number" value="7" min="0" max="100" step="1">
+		<div>
+			<select id="state" name="state"></select>
+			<select id="date" name="date"></select>
+			<input id="left" type="number" value="21" min="3" max="100" step="1">
+			<input id="right" type="number" value="7" min="0" max="100" step="1">	
+		</div>
 		<div id="choices">
 			<div id="linear">x</div>
 			<div id="quadratic">x<sup>2</sup></div>

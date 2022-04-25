@@ -1,5 +1,7 @@
 :root {
 	--background-primary: hsl(220, 30%, 15%);
+	--background-secondary: hsl(220, 30%, 25%);
+	--background-tertiary: hsl(220, 30%, 35%);
 	--text-primary: #dff;
 
 	--linear: #f00;
@@ -27,12 +29,6 @@ body {
 	max-width: 1200px;
 	width: 95%;
 	height: 100%;
-}
-nav { flex-shrink: 0; }
-nav > div {
-	float: left;
-	width: 50px;
-	height: 50px;
 }
 div#content {
 	display: flex;
