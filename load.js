@@ -19,6 +19,7 @@ const fivePoint = document.getElementById("fivepoint");
 		e.target.classList.toggle("toggled");
 		clear();
 		load(state, date, left, right);
+		document.getElementById(`${x.id}-group`).style.display = e.target.classList.contains("toggled") ? "" : "none";
 	});
 });
 
@@ -84,33 +85,50 @@ function load(state, date, left, right) {
 	graph(x2.slice(-right - 1), [avg.at(-1), ...actual], x[0], x2.at(-1), miny, maxy, "#fff8", 5, true);
 	plot(gradientGraph, x, avg, maxAvg, 25);
 
+	const x3 = x2.slice(-right);
+	document.getElementById("actual-value").innerText = actual.length ? Math.round(actual.at(-1)) : Math.round(avg.at(-1));
 	if (isToggled(linear)) {
 		v = leastSquaresPolynomial(x, avg, 1);
 		plot(graph, x2, x2.map(polynomial), "#f00", 10, true);
+		document.getElementById("linear-value").innerText = Math.round(polynomial(x2.at(-1)));
+		document.getElementById("linear-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(quadratic)) {
 		v = leastSquaresPolynomial(x, avg, 2);
 		plot(graph, x2, x2.map(polynomial), "#ff0", 10, true);
+		document.getElementById("quadratic-value").innerText = Math.round(polynomial(x2.at(-1)));
+		document.getElementById("quadratic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(cubic)) {
 		v = leastSquaresPolynomial(x, avg, 3);
 		plot(graph, x2, x2.map(polynomial), "#0f0", 10, true);
+		document.getElementById("cubic-value").innerText = Math.round(polynomial(x2.at(-1)));
+		document.getElementById("cubic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(quartic)) {
 		v = leastSquaresPolynomial(x, avg, 4);
 		plot(graph, x2, x2.map(polynomial), "#0ff", 10, true);
+		document.getElementById("quartic-value").innerText = Math.round(polynomial(x2.at(-1)));
+		document.getElementById("quartic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(quintic)) {
 		v = leastSquaresPolynomial(x, avg, 5);
 		plot(graph, x2, x2.map(polynomial), "#0ff", 10, true);
+		document.getElementById("quintic-value").innerText = Math.round(polynomial(x2.at(-1)));
+		document.getElementById("quintic-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(polynomial), actual)) : "--";
 	}
 	if (isToggled(exp)) {
 		v = leastSquaresExponential(x, avg);
 		plot(graph, x2, x2.map(exponential), "#00f", 10, true);
+		document.getElementById("exponential-mse").innerText = Math.round(meanSquaredError(x3.map(exponential), actual));
+		document.getElementById("exponential-value").innerText = actual.length ? Math.round(exponential(x2.at(-1))) : "--";
 	}
 	if (isToggled(fivePoint)) {
 		v = fivePointEndpoint(avg.slice(-5));
-		plot(graph, x2, x2.map(n => v * (n - x.at(-1)) + avg.at(-1)), "#f0f", 10, true);
+		const f = (n) => v * (n - x.at(-1)) + avg.at(-1);
+		plot(graph, x2, x2.map(f), "#f0f", 10, true);
+		document.getElementById("fivepoint-value").innerText = Math.round(f(x2.at(-1)));
+		document.getElementById("fivepoint-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(f), actual)) : "--";
 	}
 }
 function isToggled(x) { return x.classList.contains("toggled"); }

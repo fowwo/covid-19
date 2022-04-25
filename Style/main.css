@@ -1,5 +1,6 @@
 :root {
 	--background-primary: hsl(220, 30%, 15%);
+	--text-primary: #dff
 }
 html {
 	display: flex;
@@ -8,6 +9,7 @@ html {
 	height: 100vh;
 	font-family: 'Comfortaa', cursive;
 	background-color: var(--background-primary);
+	color: var(--text-primary);
 }
 body {
 	display: flex;
