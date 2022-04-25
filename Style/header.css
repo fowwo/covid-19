@@ -5,9 +5,9 @@ header > div {
 	box-sizing: border-box;
 	padding: 10px;
 }
-header > div > span:first-child { font-size: 16px; }
-header > div > span:nth-child(2) { font-size: 40px; }
-header > div > span:nth-child(3) {
+header > div > span {
 	font-size: 16px;
 	text-align: right;
 }
+header > div > span:first-child { text-align: left; }
+header > div > span:nth-child(2) { font-size: 40px; text-align: left; }
