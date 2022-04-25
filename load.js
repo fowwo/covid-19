@@ -120,8 +120,8 @@ function load(state, date, left, right) {
 	if (isToggled(exp)) {
 		v = leastSquaresExponential(x, avg);
 		plot(graph, x2, x2.map(exponential), "#00f", 10, true);
-		document.getElementById("exponential-mse").innerText = Math.round(meanSquaredError(x3.map(exponential), actual));
-		document.getElementById("exponential-value").innerText = actual.length ? Math.round(exponential(x2.at(-1))) : "--";
+		document.getElementById("exponential-value").innerText = Math.round(exponential(x2.at(-1)));
+		document.getElementById("exponential-mse").innerText = actual.length ? Math.round(meanSquaredError(x3.map(exponential), actual)) : "--";
 	}
 	if (isToggled(fivePoint)) {
 		v = fivePointEndpoint(avg.slice(-5));
