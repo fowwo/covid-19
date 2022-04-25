@@ -1,4 +1,7 @@
-header { display: flex; }
+header {
+	display: flex;
+	flex-wrap: wrap;
+}
 header > div {
 	display: flex;
 	flex-direction: column;
