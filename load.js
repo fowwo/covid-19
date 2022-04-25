@@ -2,7 +2,7 @@ let data = {};
 let fips = {};
 
 let state = "New York";
-let date = "2021-08-03";
+let date = "2022-04-11";
 let left = 21;
 let right = 7;
 
